@@ -396,6 +396,7 @@ typedef enum {
    RISCV64in_VStore,           /* Store to memory. */
    RISCV64in_VLoad,
    RISCV64in_VALU,             /* Computational binary instruction. */
+   RISCV64in_VMV,              /* Move vector register. */
 } RISCV64InstrTag;
 
 typedef struct {
@@ -490,6 +491,11 @@ typedef struct {
          HReg          src1;
          HReg          src2;
       } VALU;
+      /* Copy one vector register to another. */
+      struct {
+         HReg dst;
+         HReg src;
+      } VMV;
       /* Atomic swap of values in a CSR and an integer register. */
       struct {
          HReg dst;
@@ -646,6 +652,7 @@ RISCV64Instr*
 RISCV64Instr_VStore(RISCV64VStoreOp op, Int vl, HReg src, HReg base);
 RISCV64Instr*
 RISCV64Instr_VALU(RISCV64VALUOp op, Int vl, HReg dst, HReg src1, HReg src2);
+RISCV64Instr* RISCV64Instr_VMV(HReg dst, HReg src);
 
 RISCV64Instr* RISCV64Instr_CSRRW(HReg dst, HReg src, UInt csr);
 RISCV64Instr* RISCV64Instr_FpUnary(RISCV64FpUnaryOp op, HReg dst, HReg src);
