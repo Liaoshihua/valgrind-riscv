@@ -2107,6 +2107,10 @@ typedef
       IOPVV2(Min),
       IOPVV2(Maxu),
       IOPVV2(Max),
+      IOPVV2(Mul),
+      IOPVV2(Mulh),
+      IOPVV2(Mulhu),
+      IOPVV2(Mulhsu),
       Iop_VV2_End,
 
       Iop_VX2_Start,
@@ -2120,6 +2124,10 @@ typedef
       IOPVX2(Min),
       IOPVX2(Maxu),
       IOPVX2(Max),
+      IOPVX2(Mul),
+      IOPVX2(Mulh),
+      IOPVX2(Mulhu),
+      IOPVX2(Mulhsu),
       Iop_VX2_End,
 
       Iop_VI2_Start,
