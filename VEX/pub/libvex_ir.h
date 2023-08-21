@@ -2100,6 +2100,11 @@ typedef
 #define IOPVI2(op) \
       Iop_V##op##8_vi, Iop_V##op##16_vi, Iop_V##op##32_vi, Iop_V##op##64_vi
 
+#define IOPVV1_IEXT(op) \
+      Iop_V##op##16_vf2, Iop_V##op##32_vf2, Iop_V##op##64_vf2, \
+      Iop_V##op##32_vf4, Iop_V##op##64_vf4, \
+      Iop_V##op##64_vf8
+
       Iop_VV2_Start,
       IOPVV2(Add),
       IOPVV2(Or),
@@ -2191,6 +2196,9 @@ typedef
       IOPVX2(Madd),
       IOPVX2(Nmsub),
       Iop_VX3_End,
+
+      IOPVV1_IEXT(Zext),
+      IOPVV1_IEXT(Sext),
 
       IOPVV1(Not),
       IOPVV1(CmpNEZ),
