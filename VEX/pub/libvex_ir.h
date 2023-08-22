@@ -2153,6 +2153,10 @@ typedef
       WIOPWV2(Wadd),
       WIOPWV2(Wsubu),
       WIOPWV2(Wsub),
+
+      WIOPVV2(Wmulu),
+      WIOPVV2(Wmulsu),
+      WIOPVV2(Wmul),
       Iop_VV2_End,
 
       Iop_VX2_Start,
@@ -2193,6 +2197,10 @@ typedef
       WIOPWX2(Wadd),
       WIOPWX2(Wsubu),
       WIOPWX2(Wsub),
+
+      WIOPVX2(Wmulu),
+      WIOPVX2(Wmulsu),
+      WIOPVX2(Wmul),
       Iop_VX2_End,
 
       Iop_VI2_Start,
