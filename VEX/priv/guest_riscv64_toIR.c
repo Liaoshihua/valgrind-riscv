@@ -840,6 +840,8 @@ static const HChar* nameCSR(UInt csr)
       return "fcsr";
    case 0xc20:
       return "vl";
+   case 0xc22:
+      return "vlenb";
    default:
       vpanic("nameCSR(riscv64)");
    }
@@ -3354,7 +3356,8 @@ static Bool dis_RV64Zicsr(/*MB_OUT*/ DisResult* dres,
       UInt rs1    = INSN(19, 15);
       UInt csr    = INSN(31, 20);
       if ((funct3 != 0b001 && funct3 != 0b010 && funct3 != 0b011) ||
-          (csr != 0x001 && csr != 0x002 && csr != 0x003 && csr != 0xc20)) {
+          (csr != 0x001 && csr != 0x002 && csr != 0x003 && csr != 0xc20
+            && csr != 0xc22)) {
          /* Invalid CSRR{W,S,C}, fall through. */
       } else {
          switch (csr) {
@@ -3461,6 +3464,12 @@ static Bool dis_RV64Zicsr(/*MB_OUT*/ DisResult* dres,
             assign(irsb, vl, IRExpr_Get(OFFB_VL, Ity_I64));
             if (rd != 0)
                putIReg64(irsb, rd, mkexpr(vl));
+            vassert(rs1 == 0);
+            break;
+         }
+         case 0xc22: {
+            if (rd != 0)
+               putIReg64(irsb, rd, mkU64(VLEN / 8));
             vassert(rs1 == 0);
             break;
          }
