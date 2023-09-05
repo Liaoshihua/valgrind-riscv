@@ -2172,6 +2172,12 @@ typedef
 #define IOPV_RED_M(op) \
       Iop_V##op##_vsm_8, Iop_V##op##_vsm_16, Iop_V##op##_vsm_32, Iop_V##op##_vsm_64
 
+#define IOPW_RED(op) \
+      Iop_V##op##_vs_8, Iop_V##op##_vs_16, Iop_V##op##_vs_32
+
+#define IOPW_RED_M(op) \
+      Iop_V##op##_vsm_8, Iop_V##op##_vsm_16, Iop_V##op##_vsm_32
+
       IOPVV1_IEXT(Zext),
       IOPVV1_IEXT(Sext),
 
@@ -2242,6 +2248,9 @@ typedef
       IOPV_RED(Redor),
       IOPV_RED(Redxor),
 
+      IOPW_RED(Wredsumu),
+      IOPW_RED(Wredsum),
+
       Iop_SSS_Start,
       IOPVV3_V_VXI_M(Merge),
 
@@ -2253,6 +2262,9 @@ typedef
       IOPV_RED_M(Redand),
       IOPV_RED_M(Redor),
       IOPV_RED_M(Redxor),
+
+      IOPW_RED_M(Wredsumu),
+      IOPW_RED_M(Wredsum),
       Iop_SSS_End,
 
       Iop_SSD_Start,
