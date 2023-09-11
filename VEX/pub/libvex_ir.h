@@ -2207,6 +2207,9 @@ typedef
       IOPVV1(Mv_v_x),
       IOPVV1(Mv_v_i),
 
+      IOPVV1(Id_v),
+      IOPVV1(Iota_m),
+
       IOPVV2_V_VXI(Add),
       IOPVV2_V_VX(Sub),
       IOPVV2_V_XI(Rsub),
