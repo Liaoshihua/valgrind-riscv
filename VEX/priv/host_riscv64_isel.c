@@ -1958,6 +1958,8 @@ static void iselNext(ISelEnv* env, IRExpr* next, IRJumpKind jk, Int offsIP)
    switch (jk) {
    case Ijk_Boring:
    case Ijk_Ret:
+   case Ijk_SyncupEnv:
+   case Ijk_TooManyIR:
    case Ijk_Call: {
       HReg r = iselIntExpr_R(env, next);
       if (env->chainingAllowed)

@@ -2526,6 +2526,8 @@ Int emit_RISCV64Instr(/*MB_MOD*/ Bool*    is_profInc,
       case Ijk_Boring:
          trcval = VEX_TRC_JMP_BORING;
          break;
+      case Ijk_SyncupEnv:
+      case Ijk_TooManyIR:
       default:
          ppIRJumpKind(i->RISCV64in.XAssisted.jk);
          vpanic("emit_RISCV64Instr.RISCV64in_XAssisted: unexpected jump kind");
