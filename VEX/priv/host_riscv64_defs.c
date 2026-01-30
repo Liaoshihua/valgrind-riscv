@@ -1419,6 +1419,23 @@ void getRegUsage_RISCV64Instr(HRegUsage* u, const RISCV64Instr* i, Bool mode64)
    case RISCV64in_ProfInc:
       /* Does not use any registers known to RA. */
       return;
+   case RISCV64in_BitmanipAlu3:
+      addHRegUse(u, HRmRead, i->RISCV64in.BitmanipAlu3.src1);
+      addHRegUse(u, HRmRead, i->RISCV64in.BitmanipAlu3.src2);
+      addHRegUse(u, HRmWrite, i->RISCV64in.BitmanipAlu3.dst);
+      return;
+   case RISCV64in_BitmanipAlu2:
+      addHRegUse(u, HRmRead, i->RISCV64in.BitmanipAlu2.src);
+      addHRegUse(u, HRmWrite, i->RISCV64in.BitmanipAlu2.dst);
+      return;
+   case RISCV64in_BitmanipAluImm:
+      addHRegUse(u, HRmRead, i->RISCV64in.BitmanipAluImm.src);
+      addHRegUse(u, HRmWrite, i->RISCV64in.BitmanipAluImm.dst);
+      return;
+   case RISCV64in_BitmanipAluShamet:
+      addHRegUse(u, HRmRead, i->RISCV64in.BitmanipAluShamet.src);
+      addHRegUse(u, HRmWrite, i->RISCV64in.BitmanipAluShamet.dst);
+      return;
    default:
       ppRISCV64Instr(i, mode64);
       vpanic("getRegUsage_RISCV64Instr");
