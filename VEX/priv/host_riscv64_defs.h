@@ -347,7 +347,8 @@ typedef enum {
    RISCV64in_EvCheck,         /* Event check. */
    RISCV64in_ProfInc,          /* 64-bit profile counter increment. */
    RISCV64in_BitmanipAlu3,       /* Bitmanipulation ALU with 3 register operands. */
-   RISCV64in_BitmanipAlu2       /* Bitmanipulation ALU with 2 register operands. */
+   RISCV64in_BitmanipAlu2,       /* Bitmanipulation ALU with 2 register operands. */
+
 } RISCV64InstrTag;
 
 typedef enum {
@@ -395,6 +396,19 @@ typedef enum {
    RISCV64op_Zip,
    RISCV64op_Zexth
 } RISCV64BitmanipAluOp2;
+
+typedef enum {
+   RISCV64op_Bclri = 0x1200,
+   RISCV64op_Bexti,
+   RISCV64op_Bseti,
+   RISCV64op_Binvi,
+   RISCV64op_Slliuw
+} RISCV64BitmanipAluImmOp;
+
+typedef enum {
+   RISCV64op_RORI = 0x1300,
+   RISCV64op_RORIW
+} RISCV64BitmanipAluShametOp;
 
 typedef struct {
    RISCV64InstrTag tag;
