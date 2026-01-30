@@ -346,7 +346,8 @@ typedef enum {
    RISCV64in_XAssisted,       /* Assisted transfer to guest address. */
    RISCV64in_EvCheck,         /* Event check. */
    RISCV64in_ProfInc,          /* 64-bit profile counter increment. */
-   RISCV64in_BitmanipAlu3       /* Bitmanipulation ALU with 3 register operands. */
+   RISCV64in_BitmanipAlu3,       /* Bitmanipulation ALU with 3 register operands. */
+   RISCV64in_BitmanipAlu2       /* Bitmanipulation ALU with 2 register operands. */
 } RISCV64InstrTag;
 
 typedef enum {
@@ -380,6 +381,20 @@ typedef enum {
    RISCV64op_Sh3adduw
 } RISCV64BitmanipAluOp3;
 
+typedef enum {
+   RISCV64op_Brev8 = 0x1100,
+   RISCV64op_Clz,
+   RISCV64op_Clzw,
+   RISCV64op_Ctz,
+   RISCV64op_Ctzw,
+   RISCV64op_Orcb,
+   RISCV64op_Rev8,
+   RISCV64op_Sextb,
+   RISCV64op_Sexth,
+   RISCV64op_Unzip,
+   RISCV64op_Zip,
+   RISCV64op_Zexth
+} RISCV64BitmanipAluOp2;
 
 typedef struct {
    RISCV64InstrTag tag;
