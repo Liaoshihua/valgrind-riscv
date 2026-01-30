@@ -2849,6 +2849,73 @@ Int emit_RISCV64Instr(/*MB_MOD*/ Bool*    is_profInc,
       goto done;
    }
 
+   case RISCV64in_BitmanipAlu3: { 
+      /* <op> dst, src1, src2 */
+      UInt dst  = iregEnc(i->RISCV64in.BitmanipAlu3.dst);
+      UInt src1 = iregEnc(i->RISCV64in.BitmanipAlu3.src1);
+      UInt src2 = iregEnc(i->RISCV64in.BitmanipAlu3.src2);
+      switch (i->RISCV64in.BitmanipAlu3.op) {
+      case RISCV64op_Andn:
+         p = emit_R(p, 0b0110011, dst, 0b111, src1, src2, 0b0100100);
+         goto done;
+      case RISCV64op_Clmul:
+         p = emit_R(p, 0b0110011, dst, 0b001, src1, src2, 0b0110001);
+         goto done;
+      case RISCV64op_Clmulr:
+         p = emit_R(p, 0b0110011, dst, 0b001, src1, src2, 0b0111001);
+         goto done;
+      case RISCV64op_Clmulh:
+         p = emit_R(p, 0b0110011, dst, 0b001, src1, src2, 0b0101001);
+         goto done;
+      case RISCV64op_Max:
+         p = emit_R(p, 0b0110011, dst, 0b100, src1, src2, 0b0000101);
+         goto done;
+      case RISCV64op_Min:
+         p = emit_R(p, 0b0110011, dst, 0b101, src1, src2, 0b0000101);
+         goto done;
+      case RISCV64op_Maxu:
+         p = emit_R(p, 0b0110011, dst, 0b100, src1, src2, 0b0000001);
+         goto done;
+      case RISCV64op_Minu:
+         p = emit_R(p, 0b0110011, dst, 0b101, src1, src2, 0b0000001);
+         goto done;
+      case RISCV64op_Orn:
+         p = emit_R(p, 0b0110011, dst, 0b111, src1, src2, 0b0100101);
+         goto done;
+      case RISCV64op_Xnor:
+         p = emit_R(p, 0b0110011, dst, 0b111, src1, src2, 0b0100100);
+         goto done;
+      case RISCV64op_Bclr:
+         p = emit_R(p, 0b0110011, dst, 0b101, src1, src2, 0b0110100);
+         goto done;
+      case RISCV64op_Bset:
+         p = emit_R(p, 0b0110011, dst, 0b101, src1, src2, 0b0110101);
+         goto done;
+      case RISCV64op_Binv:
+         p = emit_R(p, 0b0110011, dst, 0b101, src1, src2, 0b0110110);
+         goto done;
+      case RISCV64op_Sh1add:
+         p = emit_R(p, 0b0110011, dst, 0b000, src1, src2, 0b0010001);
+         goto done;
+      case RISCV64op_Sh2add:
+         p = emit_R(p, 0b0110011, dst, 0b001, src1, src2, 0b0010001);
+         goto done;
+      case RISCV64op_Sh3add:
+         p = emit_R(p, 0b0110011, dst, 0b010, src1, src2, 0b0010001);
+         goto done;
+      case RISCV64op_Sh1adduw:
+         p = emit_R(p, 0b0110011, dst, 0b000, src1, src2, 0b0011001);
+         goto done;
+      case RISCV64op_Sh2adduw:
+         p = emit_R(p, 0b0110011, dst, 0b001, src1, src2, 0b0011001);
+         goto done;
+      case RISCV64op_Sh3adduw:
+         p = emit_R(p, 0b0110011, dst, 0b010, src1, src2, 0b0011001);
+         goto done;
+      }
+      break;
+   }
+
    default:
       goto bad;
    }
