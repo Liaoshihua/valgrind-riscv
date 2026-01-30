@@ -345,8 +345,41 @@ typedef enum {
    RISCV64in_XIndir,          /* Indirect transfer to guest address. */
    RISCV64in_XAssisted,       /* Assisted transfer to guest address. */
    RISCV64in_EvCheck,         /* Event check. */
-   RISCV64in_ProfInc          /* 64-bit profile counter increment. */
+   RISCV64in_ProfInc,          /* 64-bit profile counter increment. */
+   RISCV64in_BitmanipAlu3       /* Bitmanipulation ALU with 3 register operands. */
 } RISCV64InstrTag;
+
+typedef enum {
+   RISCV64op_Andn = 0x1000,
+   RISCV64op_Clmul,
+   RISCV64op_Clmulh,
+   RISCV64op_Clmulr,
+   RISCV64op_Max,
+   RISCV64op_Maxu,
+   RISCV64op_Min,
+   RISCV64op_Minu,
+   RISCV64op_Orn,
+   RISCV64op_Pack,
+   RISCV64op_Packh,
+   RISCV64op_Packw,
+   RISCV64op_Rol,
+   RISCV64op_Rolw,
+   RISCV64op_Ror,
+   RISCV64op_Rorw,
+   RISCV64op_Xnor,
+   RISCV64op_Anduw,
+   RISCV64op_Bclr,
+   RISCV64op_Bext,
+   RISCV64op_Bset,
+   RISCV64op_Binv,
+   RISCV64op_Sh1add,
+   RISCV64op_Sh1adduw,
+   RISCV64op_Sh2add,
+   RISCV64op_Sh2adduw,
+   RISCV64op_Sh3add,
+   RISCV64op_Sh3adduw
+} RISCV64BitmanipAluOp3;
+
 
 typedef struct {
    RISCV64InstrTag tag;
