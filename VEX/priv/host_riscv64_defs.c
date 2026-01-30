@@ -1570,6 +1570,23 @@ void mapRegs_RISCV64Instr(HRegRemap* m, RISCV64Instr* i, Bool mode64)
    case RISCV64in_ProfInc:
       /* Hardwires x5/t0 and x6/t1 -- nothing to modify. */
       return;
+   case RISCV64in_BitmanipAlu3:
+      mapReg(m, &i->RISCV64in.BitmanipAlu3.src1);
+      mapReg(m, &i->RISCV64in.BitmanipAlu3.src2);
+      mapReg(m, &i->RISCV64in.BitmanipAlu3.dst);
+      return;
+   case RISCV64in_BitmanipAlu2:
+      mapReg(m, &i->RISCV64in.BitmanipAlu2.src);
+      mapReg(m, &i->RISCV64in.BitmanipAlu2.dst);
+      return;
+   case RISCV64in_BitmanipAluImm:
+      mapReg(m, &i->RISCV64in.BitmanipAluImm.src);
+      mapReg(m, &i->RISCV64in.BitmanipAluImm.dst);
+      return;
+   case RISCV64in_BitmanipAluShamet:
+      mapReg(m, &i->RISCV64in.BitmanipAluShamet.src);
+      mapReg(m, &i->RISCV64in.BitmanipAluShamet.dst);
+      return;
    default:
       ppRISCV64Instr(i, mode64);
       vpanic("mapRegs_RISCV64Instr");
