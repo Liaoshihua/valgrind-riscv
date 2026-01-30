@@ -799,6 +799,60 @@ RISCV64Instr* RISCV64Instr_ProfInc(void)
    return i;
 }
 
+RISCV64Instr* RISCV64BitmanipAluOp3(RISCV64BitmanipAluOp3 op,
+                                    HReg dst,
+                                    HReg src1,
+                                    HReg src2)
+{
+   RISCV64Instr* i = LibVEX_Alloc_inline(sizeof(RISCV64Instr));
+   i->tag          = RISCV64in_BitmanipAlu3;
+   i->RISCV64in.BitmanipAlu3.op   = op;
+   i->RISCV64in.BitmanipAlu3.dst   = dst;
+   i->RISCV64in.BitmanipAlu3.src1  = src1;
+   i->RISCV64in.BitmanipAlu3.src2  = src2;
+   return i;
+}
+
+RISCV64Instr* RISCV64BitmanipAluOp2(RISCV64BitmanipAluOp2 op,
+                                    HReg dst,
+                                    HReg src)
+{
+   RISCV64Instr* i = LibVEX_Alloc_inline(sizeof(RISCV64Instr));
+   i->tag          = RISCV64in_BitmanipAlu2;
+   i->RISCV64in.BitmanipAlu2.op   = op;
+   i->RISCV64in.BitmanipAlu2.dst  = dst;
+   i->RISCV64in.BitmanipAlu2.src  = src;
+   return i;
+}
+
+RISCV64Instr* RISCV64BitmanipAluImmOp(RISCV64BitmanipAluImmOp op,
+                                       HReg dst,
+                                       HReg src,
+                                       UChar imm5)
+{
+   RISCV64Instr* i = LibVEX_Alloc_inline(sizeof(RISCV64Instr));
+   i->tag          = RISCV64in_BitmanipAluImm;
+   i->RISCV64in.BitmanipAluImm.op  = op;
+   i->RISCV64in.BitmanipAluImm.dst = dst;
+   i->RISCV64in.BitmanipAluImm.src = src;
+   i->RISCV64in.BitmanipAluImm.imm5 = imm5;
+   return i;
+}
+
+RISCV64Instr* RISCV64Instr_BitmanipAluShametOp(RISCV64BitmanipAluShametOp op,
+                                               HReg dst,
+                                               HReg src,
+                                               Int shamt)
+{
+   RISCV64Instr* i = LibVEX_Alloc_inline(sizeof(RISCV64Instr));
+   i->tag          = RISCV64in_BitmanipAluShamet;
+   i->RISCV64in.BitmanipAluShamet.op   = op;
+   i->RISCV64in.BitmanipAluShamet.dst  = dst;
+   i->RISCV64in.BitmanipAluShamet.src  = src;
+   i->RISCV64in.BitmanipAluShamet.shamt = shamt;
+   return i; 
+}
+
 void ppRISCV64Instr(const RISCV64Instr* i, Bool mode64)
 {
    vassert(mode64 == True);
