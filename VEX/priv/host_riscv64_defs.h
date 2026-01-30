@@ -352,62 +352,62 @@ typedef enum {
 } RISCV64InstrTag;
 
 typedef enum {
-   RISCV64op_Andn = 0x1000,
-   RISCV64op_Clmul,
-   RISCV64op_Clmulh,
-   RISCV64op_Clmulr,
-   RISCV64op_Max,
-   RISCV64op_Maxu,
-   RISCV64op_Min,
-   RISCV64op_Minu,
-   RISCV64op_Orn,
-   RISCV64op_Pack,
-   RISCV64op_Packh,
-   RISCV64op_Packw,
-   RISCV64op_Rol,
-   RISCV64op_Rolw,
-   RISCV64op_Ror,
-   RISCV64op_Rorw,
-   RISCV64op_Xnor,
-   RISCV64op_Anduw,
-   RISCV64op_Bclr,
-   RISCV64op_Bext,
-   RISCV64op_Bset,
-   RISCV64op_Binv,
-   RISCV64op_Sh1add,
-   RISCV64op_Sh1adduw,
-   RISCV64op_Sh2add,
-   RISCV64op_Sh2adduw,
-   RISCV64op_Sh3add,
-   RISCV64op_Sh3adduw
+   RISCV64op_Andn = 0x1000, /* Bitwise AND with negation */
+   RISCV64op_Clmul,         /* Carry-less multiplication */
+   RISCV64op_Clmulh,       /* Carry-less multiplication high */
+   RISCV64op_Clmulr,       /* Carry-less multiplication round */
+   RISCV64op_Max,          /* Maximum */
+   RISCV64op_Maxu,        /* Maximum unsigned */
+   RISCV64op_Min,         /* Minimum */
+   RISCV64op_Minu,       /* Minimum unsigned */
+   RISCV64op_Orn,        /* Bitwise OR with negation */
+   RISCV64op_Pack,      /* Pack */
+   RISCV64op_Packh,    /* Pack high */
+   RISCV64op_Packw,    /* Pack word */
+   RISCV64op_Rol,      /* Rotate left */
+   RISCV64op_Rolw,     /* Rotate left word */
+   RISCV64op_Ror,      /* Rotate right */
+   RISCV64op_Rorw,     /* Rotate right word */
+   RISCV64op_Xnor,     /* Bitwise XNOR */
+   RISCV64op_Anduw,    /* Bitwise AND unsigned word */
+   RISCV64op_Bclr,     /* Bitwise clear */
+   RISCV64op_Bext,     /* Bitwise extract */
+   RISCV64op_Bset,     /* Bitwise set */
+   RISCV64op_Binv,   /* Bitwise invert */
+   RISCV64op_Sh1add, /* Shift left 1 and add */
+   RISCV64op_Sh1adduw, /* Shift left 1 and add unsigned word */
+   RISCV64op_Sh2add, /* Shift left 2 and add */
+   RISCV64op_Sh2adduw, /* Shift left 2 and add unsigned word */
+   RISCV64op_Sh3add, /* Shift left 3 and add */
+   RISCV64op_Sh3adduw /* Shift left 3 and add unsigned word */
 } RISCV64BitmanipAluOp3;
 
 typedef enum {
-   RISCV64op_Brev8 = 0x1100,
-   RISCV64op_Clz,
-   RISCV64op_Clzw,
-   RISCV64op_Ctz,
-   RISCV64op_Ctzw,
-   RISCV64op_Orcb,
-   RISCV64op_Rev8,
-   RISCV64op_Sextb,
-   RISCV64op_Sexth,
-   RISCV64op_Unzip,
-   RISCV64op_Zip,
-   RISCV64op_Zexth
+   RISCV64op_Brev8 = 0x1100, /* Bitwise reverse byte */
+   RISCV64op_Clz, /* Count leading zeros */
+   RISCV64op_Clzw, /* Count leading zeros word */
+   RISCV64op_Ctz, /* Count trailing zeros */
+   RISCV64op_Ctzw, /* Count trailing zeros word */
+   RISCV64op_Orcb, /* Bitwise OR with carry */
+   RISCV64op_Rev8, /* Bitwise reverse byte */
+   RISCV64op_Sextb, /* Bitwise sign-extend byte */
+   RISCV64op_Sexth, /* Bitwise sign-extend halfword */
+   RISCV64op_Unzip, /* Bitwise unzip */
+   RISCV64op_Zip,  /* Bitwise zip */
+   RISCV64op_Zexth /* Bitwise zero-extend halfword */
 } RISCV64BitmanipAluOp2;
 
 typedef enum {
-   RISCV64op_Bclri = 0x1200,
-   RISCV64op_Bexti,
-   RISCV64op_Bseti,
-   RISCV64op_Binvi,
-   RISCV64op_Slliuw
+   RISCV64op_Bclri = 0x1200, /* Bitwise clear immediate */
+   RISCV64op_Bexti, /* Bitwise extract immediate */
+   RISCV64op_Bseti, /* Bitwise set immediate */
+   RISCV64op_Binvi, /* Bitwise invert immediate */
+   RISCV64op_Slliuw /* Shift left logical immediate word */
 } RISCV64BitmanipAluImmOp;
 
 typedef enum {
-   RISCV64op_RORI = 0x1300,
-   RISCV64op_RORIW
+   RISCV64op_RORI = 0x1300,  /* Rotate right immediate */
+   RISCV64op_RORIW           /* Rotate right immediate word */
 } RISCV64BitmanipAluShametOp;
 
 typedef struct {
@@ -640,6 +640,11 @@ RISCV64Instr* RISCV64Instr_EvCheck(HReg base_amCounter,
                                    HReg base_amFailAddr,
                                    Int  soff12_amFailAddr);
 RISCV64Instr* RISCV64Instr_ProfInc(void);
+RISCV64Instr* RISCV64Instr_BitmanipAlu3(RISCV64BitmanipAluOp3 op, HReg dst, HReg src1, HReg  src2);
+RISCV64Instr* RISCV64Instr_BitmanipAlu2(RISCV64BitmanipAluOp2 op, HReg dst, HReg src);
+RISCV64Instr* RISCV64Instr_BitmanipAluImm(RISCV64BitmanipAluImmOp op, HReg dst, HReg src, Int imm5);
+RISCV64Instr* RISCV64Instr_BitmanipAluShamt(RISCV64BitmanipAluShametOp op, HReg dst, HReg src, Int shamt);
+
 
 /*------------------------------------------------------------*/
 /*--- Misc helpers                                         ---*/
