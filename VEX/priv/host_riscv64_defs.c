@@ -1091,6 +1091,34 @@ void ppRISCV64Instr(const RISCV64Instr* i, Bool mode64)
       vex_printf("(profInc) li t1, $NotKnownYet; "
                  "ld t0, 0(t1); c.addi t0, t0, 1; sd t0, 0(t1)");
       return;
+   case RISCV64in_BitmanipAlu3:
+      vex_printf("%-7s ", showRISCV64BitmanipAluOp3(i->RISCV64in.BitmanipAlu3.op));
+      ppHRegRISCV64(i->RISCV64in.BitmanipAlu3.dst);
+      vex_printf(", ");
+      ppHRegRISCV64(i->RISCV64in.BitmanipAlu3.src1);
+      vex_printf(", ");
+      ppHRegRISCV64(i->RISCV64in.BitmanipAlu3.src2);
+      return;
+   case RISCV64in_BitmanipAlu2:
+      vex_printf("%-7s ", showRISCV64BitmanipAluOp2(i->RISCV64in.BitmanipAlu2.op));
+      ppHRegRISCV64(i->RISCV64in.BitmanipAlu2.dst);
+      vex_printf(", ");
+      ppHRegRISCV64(i->RISCV64in.BitmanipAlu2.src);
+      return;
+   case RISCV64in_BitmanipAluImm:
+      vex_printf("%-7s ", showRISCV64BitmanipAluImmOp(i->RISCV64in.BitmanipAluImm.op));
+      ppHRegRISCV64(i->RISCV64in.BitmanipAluImm.dst);
+      vex_printf(", ");
+      ppHRegRISCV64(i->RISCV64in.BitmanipAluImm.src);
+      vex_printf(", %u", i->RISCV64in.BitmanipAluImm.imm5);
+      return;
+   case RISCV64in_BitmanipAluShamet:
+      vex_printf("%-7s ", showRISCV64BitmanipAluShametOp(i->RISCV64in.BitmanipAluShamet.op));
+      ppHRegRISCV64(i->RISCV64in.BitmanipAluShamet.dst);
+      vex_printf(", ");
+      ppHRegRISCV64(i->RISCV64in.BitmanipAluShamet.src);
+      vex_printf(", %d", i->RISCV64in.BitmanipAluShamet.shamt);
+      return;
    default:
       vpanic("ppRISCV64Instr");
    }
