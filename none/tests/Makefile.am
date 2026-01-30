@@ -419,7 +419,9 @@ else
  mq_LDADD		= -lrt
 endif
 libvex_test_CFLAGS      = $(AM_CFLAGS) @FLAG_FSANITIZE@
-libvex_test_LDADD       = ../../VEX/libvex-@VGCONF_ARCH_PRI@-@VGCONF_OS@.a \
+libvex_test_LDADD       = \
+	../../VEX/libvex-@VGCONF_ARCH_PRI@-@VGCONF_OS@.a \
+	../../coregrind/libcoregrind-@VGCONF_ARCH_PRI@-@VGCONF_OS@.a \
 			   @LIB_UBSAN@
 libvexmultiarch_test_CFLAGS= $(AM_CFLAGS) @FLAG_FSANITIZE@
 if VGCONF_ARCHS_INCLUDE_RISCV64
