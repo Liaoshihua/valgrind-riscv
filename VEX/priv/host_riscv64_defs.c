@@ -387,6 +387,128 @@ static const HChar* showRISCV64FpLdStOp(RISCV64FpLdStOp op)
    vpanic("showRISCV64FpLdStOp");
 }
 
+static const HChar* showRISCV64BitmanipAluOp3(RISCV64BitmanipAluOp3 op)
+{
+   switch (op) {
+      case RISCV64in_Andn:
+         return "andn";
+      case RISCV64in_Clmul:
+         return "clmul";
+      case RISCV64in_Clmulh:
+         return "clmulh";
+      case RISCV64in_Clmulr:
+         return "clmulr";
+      case RISCV64in_Max:
+         return "max";
+      case RISCV64in_Maxu:
+         return "maxu";
+      case RISCV64in_Min:
+         return "min";
+      case RISCV64in_Minu:
+         return "minu";
+      case RISCV64in_Orn:
+         return "orn";
+      case RISCV64in_Pack:
+         return "pack";
+      case RISCV64in_Packh:
+         return "packh";
+      case RISCV64in_Packw:
+         return "packw";
+      case RISCV64in_Rol:
+         return "rol";
+      case RISCV64in_Rolw:
+         return "rolw";
+      case RISCV64in_Ror:
+         return "ror";
+      case RISCV64in_Rorw:
+         return "rorw";
+      case RISCV64in_Xnor:
+         return "xnor";
+      case RISCV64in_Anduw:
+         return "anduw";
+      case RISCV64in_Bclr:
+         return "bclr";
+      case RISCV64in_Bext:
+         return "bext";
+      case RISCV64in_Bset:
+         return "bset";
+      case RISCV64in_Binv:
+         return "binv";
+      case RISCV64in_Sh1add:
+         return "sh1add";
+      case RISCV64in_Sh1adduw:
+         return "sh1adduw";
+      case RISCV64in_Sh2add:
+         return "sh2add";
+      case RISCV64in_Sh2adduw:
+         return "sh2adduw";
+      case RISCV64in_Sh3add:
+         return "sh3add";
+      case RISCV64in_Sh3adduw:
+         return "sh3adduw";
+   }
+   vpanic("showRISCV64BitmanipAluOp3");
+}
+
+static const HChar* showRISCV64BitmanipAluOp2(RISCV64BitmanipAluOp2 op)
+{
+   switch (op) {
+      case RISCV64in_Brev8:
+         return "brev8";
+      case RISCV64in_Clz:
+         return "clz";
+      case RISCV64in_Clzw:
+         return "clzw";
+      case RISCV64in_Ctz:
+         return "ctz";
+      case RISCV64in_Ctzw:
+         return "ctzw";
+      case RISCV64in_Orcb:
+         return "orcb";
+      case RISCV64in_Rev8:
+         return "rev8";
+      case RISCV64in_Sextb:
+         return "sext.b";
+      case RISCV64in_Sexth:
+         return "sext.h";
+      case RISCV64in_Unzip:
+         return "unzip";
+      case RISCV64in_Zip:
+         return "zip";
+      case RISCV64in_Zexth:
+         return "zexth";
+   }
+   vpanic("showRISCV64BitmanipAluOp2");
+}
+
+static const HChar* showRISCV64BitmanipAluImmOp(RISCV64BitmanipAluImmOp op)
+{
+   switch (op) {
+      case RISCV64in_Bclri:
+         return "bclri";
+      case RISCV64in_Bexti:
+         return "bexti";
+      case RISCV64in_Bseti:
+         return "bseti";
+      case RISCV64in_Binvi:
+         return "binvi";
+      case RISCV64in_Slliuw:
+         return "slliuw";
+   }
+   vpanic("showRISCV64BitmanipAluImmOp");
+}
+
+static const HChar* showRISCV64BitmanipAluShametOp(RISCV64BitmanipAluShametOp op)
+{
+   switch (op) {
+      case RISCV64in_RORI:
+         return "rori";
+      case RISCV64in_RORIW:
+         return "roriw";
+   }
+   vpanic("showRISCV64BitmanipAluShametOp");
+}
+
 RISCV64Instr* RISCV64Instr_LI(HReg dst, ULong imm64)
 {
    RISCV64Instr* i       = LibVEX_Alloc_inline(sizeof(RISCV64Instr));
